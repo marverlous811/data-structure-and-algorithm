@@ -5,7 +5,7 @@
 #include "singly_linklist.h"
 
 int main(){
-    SinglyLinkList<int> *intList = new SinglyLinkList<int>();
+    auto intList = new SinglyLinkList<int>();
     intList->addData(1);
     intList->addData(2);
     intList->addData(3);

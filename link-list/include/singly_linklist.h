@@ -15,6 +15,7 @@ struct LinkListNode {
 
     LinkListNode(T data) {
        this->data = data;
+       this->next = nullptr;
     }
 };
 
@@ -24,7 +25,7 @@ using LinklistCallback = void (*)(T);
 template<typename T>
 class SinglyLinkList {
 public:
-    SinglyLinkList();
+    SinglyLinkList(){}
     ~SinglyLinkList();
 
 public:
@@ -47,7 +48,7 @@ public:
             cb(currentNode->data);
             currentNode = currentNode->next;
         }
-        while (currentNode->next != nullptr);
+        while (currentNode != nullptr);
     }
 
 private:
