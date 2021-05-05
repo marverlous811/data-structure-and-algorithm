@@ -34,7 +34,7 @@ public:
     ~SinglyLinkList();
 
 public:
-    void addData(T data){
+    void pushBack(T data){
         auto node = new LinkListNode<T>(data);
 
         LinkListNode<T>* cur = start;
@@ -42,6 +42,23 @@ public:
             cur = cur->next;
         };
         cur->next = node;
+    }
+
+    bool insert(T data, int idx) {
+        auto node = new LinkListNode<T>(data);
+        auto cur = start->next;
+        int curIdx = 0;
+        while (cur != NULL) {
+            if(idx == curIdx) {
+                node->next = cur->next;
+                cur->next = node;
+                return true;
+            }
+
+            cur = cur->next;
+            curIdx++;
+        }
+        return false;
     }
     void foreach(LinklistCallback<T> cb) {
         LinkListNode<T> *currentNode = start->next;
@@ -90,6 +107,19 @@ public:
             curIdx++;
             currentNode = currentNode->next;
         }
+    }
+
+    int contain(T value) {
+        int curIdx = 0;
+        LinkListNode<T> *currentNode = start->next;
+        while (currentNode != NULL) {
+            if(currentNode->data == value) {
+                return curIdx;
+            }
+            curIdx++;
+            currentNode = currentNode->next;
+        }
+        return -1;
     }
 
     void deleteList(){
