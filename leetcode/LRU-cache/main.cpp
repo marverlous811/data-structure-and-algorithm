@@ -58,18 +58,21 @@ private:
 	}
 
 	void updateToCache(int key) {
-		if (cache.size() > 0) {
-			cache.remove(key);
+		if (stat.find(key) != stat.end()) {
+			cache.erase(stat[key]);
 		}
 		cache.push_front(key);
+		stat[key] = cache.begin();
 		if (mapper.size() > size) {
 			auto lastKey = cache.back();
 			cache.pop_back();
 			mapper.erase(mapper.find(lastKey));
+			stat.erase(stat.find(lastKey));
 		}
 	}
 private:
 	std::unordered_map<int, int> mapper;
+	std::unordered_map<int, std::list<int>::iterator> stat;
 	std::list<int> cache;
 	int size;
 };
