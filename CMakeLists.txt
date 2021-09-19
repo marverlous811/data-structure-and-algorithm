@@ -25,5 +25,6 @@ enable_testing()
 
 add_subdirectory(recusive-and-backtrack)
 add_subdirectory(link-list)
+add_subdirectory(leetcode)
 
 add_executable(algorithm_and_data_structure main.cpp)
